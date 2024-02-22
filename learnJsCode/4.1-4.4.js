@@ -85,5 +85,40 @@
 
 {
     // Методы объекта, "this"
+    const user = {
+        name: 'John',
+        age: 25,
 
+        logUserName() {
+            console.log(user.name);
+        },
+
+        logUserNameUsingThis() {
+            console.log(this.name);
+        }
+    };
+
+    const anotherUser = {
+        name: 'Mike',
+        age: 20
+    }
+
+    anotherUser.logUserName = user.logUserName;
+    user.logUserName(); // John
+    anotherUser.logUserName(); // John
+
+    anotherUser.logUserName = user.logUserNameUsingThis;
+    anotherUser.logUserName(); // Mike
+
+    anotherUser.logUserAge = () => console.log(this.age);
+    anotherUser.logUserAge(); // undefined
+
+    anotherUser.logUserAge = function () { console.log(this.age) };
+    anotherUser.logUserAge(); // 20
+
+    anotherUser.logUserAge = function () {
+        const getAge = () => this.age;
+        console.log(getAge());
+    }
+    anotherUser.logUserAge(); // 20
 }
