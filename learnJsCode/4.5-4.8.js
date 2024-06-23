@@ -50,6 +50,17 @@
 
 {
     // Опциональная цепочка '?.'
+    const user = {
+        name: 'Mike',
+        age: 30,
+    }
+
+    console.log(user.address.city); // Cannot read properties of undefined
+    console.log(user.address?.city); // undefined
+
+    const user2 = {};
+
+    console.log(user2.getName?.()) // undefined
 }
 
 {
